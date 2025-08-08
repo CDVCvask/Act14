@@ -14,7 +14,7 @@ while allow == False:
     print(" ")
     match opt:
         case 1:
-            check
+            check = ""
             num = int(input("Cuantos participantes desea ingresar: "))
             if num <= 0:
                 print("La cantidad ingresada no es valida")
@@ -25,18 +25,24 @@ while allow == False:
                     if name == "":
                         print("No puede dejar este espacio vacio")
                     else:
-                        category = input("Ingrese el categoria del participante: ")
-                        check = category.lower()
-                        if check == "juvenil" or check == "adulto" or check == "master":
-                            participants[name] = num
+                        age = int(input("Ingrese el edad del participante: "))
+                        if age < 16:
+                            print("Edad no valida")
                         else:
-                            print("La categoría no es valida solo se aceptan: Juvenil, Adulto y Master")
+                            category = input("Ingrese el categoria del participante: ")
+                            check = category.lower()
+                            if check == "juvenil" or check == "adulto" or check == "master":
+                                participants[code] = {'Nombre': name, 'Edad': age, 'Categoria': category.capitalize()}
+                                allow1 = True
+                            else:
+                                print("La categoría no es valida solo se aceptan: Juvenil, Adulto y Master")
                     count = count + 1
         case 2:
             if allow1 == False:
                 print("Aún no hay ningún dato")
             else:
-                print("Show")
+                for code,value in participants.items():
+                    print(f"Dorsal{code}, Nombre: {value['Nombre']}, Edad: {value['Edad']}, Categoria: {value['Categoria']}")
         case 3:
             if allow1 == False:
                 print("Aún no hay ningún dato")
