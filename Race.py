@@ -79,16 +79,24 @@ while allow == False:
             if allow1 == False:
                 print("Aún no hay ningún dato")
             else:
+                cont = 1
                 sorted = Q_S_Name(participants)
                 for code,value in sorted.items():
+                    print(f"Participante {cont}")
                     print(f"Dorsal{code}, Nombre: {value['Nombre']}, Edad: {value['Edad']}, Categoria: {value['Categoria']}")
+                    print(" ")
+                    cont = cont + 1
         case 3:
             if allow1 == False:
                 print("Aún no hay ningún dato")
             else:
+                cont = 1
                 sorted = Q_S_Age(participants)
                 for code,value in sorted.items():
+                    print(f"Participante {cont}")
                     print(f"Dorsal{code}, Nombre: {value['Nombre']}, Edad: {value['Edad']}, Categoria: {value['Categoria']}")
+                    print(" ")
+                    cont = cont + 1
         case 4:
             print("Gracias por utilizar el programa")
             break
