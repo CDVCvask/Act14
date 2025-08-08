@@ -4,6 +4,25 @@ def Menu():
     print("2.Mostrar participantes ordenados por nombre")
     print("3.Mostrar participantes ordenados por edad")
     print("4.Salir")
+def Q_S_Name(Dict):
+    piv = " "
+    lower = {}
+    same = {}
+    uppper = {}
+    if len(Dict) <= 1:
+        return Dict
+    else:
+        for key, value in Dict.items():
+            piv = value['Nombre']
+            break
+        for key, value in Dict.items():
+            if value['Nombre'] < piv:
+                lower[key] = {'Nombre': value['Nombre'], 'Edad': value['Edad'],'Categoria': value['Categoria']}
+            if value['Nombre'] == piv:
+                same[key] = {'Nombre': value['Nombre'], 'Edad': value['Edad'], 'Categoria': value['Categoria']}
+            if value['Nombre'] > piv:
+                uppper[key] = {'Nombre': value['Nombre'], 'Edad': value['Edad'], 'Categoria': value['Categoria']}
+        return {**Q_S_Name(lower), **same, **Q_S_Name(uppper)}
 allow = False
 allow1 = False
 participants = {}
@@ -41,7 +60,8 @@ while allow == False:
             if allow1 == False:
                 print("Aún no hay ningún dato")
             else:
-                for code,value in participants.items():
+                sorted = Q_S_Name(participants)
+                for code,value in sorted.items():
                     print(f"Dorsal{code}, Nombre: {value['Nombre']}, Edad: {value['Edad']}, Categoria: {value['Categoria']}")
         case 3:
             if allow1 == False:
