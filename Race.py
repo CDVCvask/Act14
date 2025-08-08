@@ -23,6 +23,25 @@ def Q_S_Name(Dict):
             if value['Nombre'] > piv:
                 uppper[key] = {'Nombre': value['Nombre'], 'Edad': value['Edad'], 'Categoria': value['Categoria']}
         return {**Q_S_Name(lower), **same, **Q_S_Name(uppper)}
+def Q_S_Age(Dict):
+    piv = " "
+    lower = {}
+    same = {}
+    uppper = {}
+    if len(Dict) <= 1:
+        return Dict
+    else:
+        for key, value in Dict.items():
+            piv = value['Edad']
+            break
+        for key, value in Dict.items():
+            if value['Edad'] < piv:
+                lower[key] = {'Nombre:': value['Nombre'], 'Edad': value['Edad'], 'Categoria': value['Categoria']}
+            if value['Edad'] == piv:
+                same[key] = {'Nombre:': value['Nombre'], 'Edad': value['Edad'], 'Categoria': value['Categoria']}
+            if value['Edad'] > piv:
+                uppper[key] = {'Nombre:': value['Nombre'], 'Edad': value['Edad'], 'Categoria': value['Categoria']}
+        return {**Q_S_Age(lower), **same, **Q_S_Age(uppper)}
 allow = False
 allow1 = False
 participants = {}
@@ -67,7 +86,7 @@ while allow == False:
             if allow1 == False:
                 print("Aún no hay ningún dato")
             else:
-                print("Show")
+                sorted = Q_S_Age(participants)
         case 4:
             print("Gracias por utilizar el programa")
             break
