@@ -36,11 +36,11 @@ def Q_S_Age(Dict):
             break
         for key, value in Dict.items():
             if value['Edad'] < piv:
-                lower[key] = {'Nombre:': value['Nombre'], 'Edad': value['Edad'], 'Categoria': value['Categoria']}
+                lower[key] = {'Nombre': value['Nombre'], 'Edad': value['Edad'],'Categoria': value['Categoria']}
             if value['Edad'] == piv:
-                same[key] = {'Nombre:': value['Nombre'], 'Edad': value['Edad'], 'Categoria': value['Categoria']}
+                same[key] = {'Nombre': value['Nombre'], 'Edad': value['Edad'], 'Categoria': value['Categoria']}
             if value['Edad'] > piv:
-                uppper[key] = {'Nombre:': value['Nombre'], 'Edad': value['Edad'], 'Categoria': value['Categoria']}
+                uppper[key] = {'Nombre': value['Nombre'], 'Edad': value['Edad'], 'Categoria': value['Categoria']}
         return {**Q_S_Age(lower), **same, **Q_S_Age(uppper)}
 allow = False
 allow1 = False
@@ -87,6 +87,8 @@ while allow == False:
                 print("Aún no hay ningún dato")
             else:
                 sorted = Q_S_Age(participants)
+                for code,value in sorted.items():
+                    print(f"Dorsal{code}, Nombre: {value['Nombre']}, Edad: {value['Edad']}, Categoria: {value['Categoria']}")
         case 4:
             print("Gracias por utilizar el programa")
             break
